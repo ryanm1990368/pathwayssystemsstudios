@@ -1,6 +1,10 @@
+// ========================================
+// Pathway Systems Studio - Interactions
+// ========================================
+
 // Mobile Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
 
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
@@ -8,34 +12,41 @@ hamburger.addEventListener('click', () => {
 });
 
 // Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-menu a').forEach(link => {
+document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
     });
 });
 
-// Navbar scroll effect
+// ========================================
+// Navbar Scroll Effect
+// ========================================
+
+const navbar = document.getElementById('navbar');
 let lastScroll = 0;
-const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
-    if (currentScroll <= 0) {
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+    if (currentScroll > 50) {
+        navbar.classList.add('scrolled');
     } else {
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        navbar.classList.remove('scrolled');
     }
     
     lastScroll = currentScroll;
 });
 
-// Smooth scroll for anchor links
+// ========================================
+// Smooth Scrolling for Anchor Links
+// ========================================
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
+        
         if (target) {
             const navbarHeight = navbar.offsetHeight;
             const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
@@ -48,88 +59,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+// ========================================
+// Active Navigation Link on Scroll
+// ========================================
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Add fade-in animation to cards
-const animateElements = document.querySelectorAll('.service-card, .result-card, .testimonial-card, .case-study');
-animateElements.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
-
-// Contact Form Handling
-const contactForm = document.getElementById('contactForm');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        company: document.getElementById('company').value,
-        message: document.getElementById('message').value
-    };
-    
-    // Here you would typically send the data to a server
-    // For now, we'll just show a success message
-    
-    // Create success message
-    const successMessage = document.createElement('div');
-    successMessage.style.cssText = `
-        background: #10b981;
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 8px;
-        margin-top: 1rem;
-        text-align: center;
-        animation: fadeInUp 0.5s ease;
-    `;
-    successMessage.textContent = 'Thank you! Your message has been sent. We\'ll get back to you within 24 hours.';
-    
-    // Remove any existing success messages
-    const existingMessage = contactForm.querySelector('.success-message');
-    if (existingMessage) {
-        existingMessage.remove();
-    }
-    
-    successMessage.className = 'success-message';
-    contactForm.appendChild(successMessage);
-    
-    // Reset form
-    contactForm.reset();
-    
-    // Remove success message after 5 seconds
-    setTimeout(() => {
-        successMessage.style.opacity = '0';
-        setTimeout(() => successMessage.remove(), 300);
-    }, 5000);
-    
-    // Log form data (in production, you'd send this to your backend)
-    console.log('Form submitted:', formData);
-    
-    // Note: To actually send emails, you'll need to:
-    // 1. Set up a backend server (Node.js, Python, etc.)
-    // 2. Use an email service (SendGrid, Mailgun, AWS SES, etc.)
-    // 3. Or use a form service like Formspree, Netlify Forms, or EmailJS
-});
-
-// Add active state to navigation based on scroll position
 const sections = document.querySelectorAll('section[id]');
 
 window.addEventListener('scroll', () => {
@@ -145,7 +78,7 @@ window.addEventListener('scroll', () => {
         }
     });
     
-    document.querySelectorAll('.nav-menu a').forEach(link => {
+    document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active-link');
         if (link.getAttribute('href') === `#${current}`) {
             link.classList.add('active-link');
@@ -153,53 +86,275 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Add number counter animation for results
-const resultNumbers = document.querySelectorAll('.result-number');
+// ========================================
+// Intersection Observer for Fade-in Animations
+// ========================================
 
-const animateNumbers = (entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const target = entry.target;
-            const text = target.textContent;
-            const hasPlus = text.includes('+');
-            const hasPercent = text.includes('%');
-            const hasM = text.includes('M');
-            
-            // Extract number
-            let number = parseFloat(text.replace(/[^0-9.]/g, ''));
-            
-            // Animate
-            let current = 0;
-            const increment = number / 50;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= number) {
-                    current = number;
-                    clearInterval(timer);
-                }
-                
-                let displayValue = Math.floor(current);
-                if (number % 1 !== 0) {
-                    displayValue = current.toFixed(1);
-                }
-                
-                target.textContent = displayValue + (hasM ? 'M' : '') + (hasPlus ? '+' : '') + (hasPercent ? '%' : '');
-            }, 30);
-            
-            observer.unobserve(target);
-        }
-    });
+const observerOptions = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
 };
 
-const numberObserver = new IntersectionObserver(animateNumbers, {
-    threshold: 0.5
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, observerOptions);
+
+// Add fade-in animation to cards and elements
+const animateElements = document.querySelectorAll(
+    '.service-card, .pillar-card, .approach-step, .philosophy-card'
+);
+
+animateElements.forEach(el => {
+    el.classList.add('fade-in');
+    observer.observe(el);
 });
 
-resultNumbers.forEach(number => {
-    numberObserver.observe(number);
+// ========================================
+// Parallax Effect on Hero Gradient
+// ========================================
+
+const heroGradient = document.querySelector('.hero-gradient');
+
+if (heroGradient) {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxSpeed = 0.5;
+        heroGradient.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+    });
+}
+
+// ========================================
+// Contact Form Handling
+// ========================================
+
+const contactForm = document.getElementById('contactForm');
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        organization: document.getElementById('organization').value,
+        message: document.getElementById('message').value
+    };
+    
+    // Create success message
+    const successMessage = document.createElement('div');
+    successMessage.style.cssText = `
+        background: linear-gradient(135deg, #0077B6 0%, #FFA500 100%);
+        color: white;
+        padding: 1.25rem 2rem;
+        border-radius: 12px;
+        margin-top: 1.5rem;
+        text-align: center;
+        animation: fadeInUp 0.5s ease;
+        font-weight: 600;
+    `;
+    successMessage.textContent = 'Thank you for reaching out! We\'ll respond within 48 hours to begin exploring how we can help.';
+    
+    // Remove any existing success messages
+    const existingMessage = contactForm.querySelector('.success-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    successMessage.className = 'success-message';
+    contactForm.appendChild(successMessage);
+    
+    // Reset form
+    contactForm.reset();
+    
+    // Remove success message after 7 seconds
+    setTimeout(() => {
+        successMessage.style.opacity = '0';
+        successMessage.style.transform = 'translateY(-20px)';
+        successMessage.style.transition = 'all 0.3s ease';
+        setTimeout(() => successMessage.remove(), 300);
+    }, 7000);
+    
+    // Log form data (in production, send this to your backend)
+    console.log('Contact form submitted:', formData);
+    
+    // SETUP NOTE: To actually send emails, integrate with:
+    // - Formspree: https://formspree.io
+    // - EmailJS: https://www.emailjs.com
+    // - Netlify Forms (if deploying on Netlify)
+    // - Or your own backend server
 });
 
-// Log message for developers
-console.log('%cApex Consulting Website', 'font-size: 20px; font-weight: bold; color: #2563eb;');
-console.log('%cBuilt with HTML, CSS, and JavaScript', 'font-size: 14px; color: #64748b;');
-console.log('%cReady to customize and deploy!', 'font-size: 14px; color: #10b981;');
+// ========================================
+// Smooth Reveal for Approach Quote
+// ========================================
+
+const approachQuote = document.querySelector('.approach-quote');
+
+if (approachQuote) {
+    const quoteObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    approachQuote.style.opacity = '0';
+    approachQuote.style.transform = 'translateY(30px)';
+    approachQuote.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    
+    quoteObserver.observe(approachQuote);
+}
+
+// ========================================
+// Service Card Hover Effects Enhancement
+// ========================================
+
+const serviceCards = document.querySelectorAll('.service-card');
+
+serviceCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// ========================================
+// Scroll Progress Indicator (Optional)
+// ========================================
+
+function createScrollProgress() {
+    const progressBar = document.createElement('div');
+    progressBar.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(90deg, #0077B6 0%, #FFA500 100%);
+        z-index: 9999;
+        transition: width 0.1s ease;
+    `;
+    document.body.appendChild(progressBar);
+    
+    window.addEventListener('scroll', () => {
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (window.pageYOffset / windowHeight) * 100;
+        progressBar.style.width = scrolled + '%';
+    });
+}
+
+// Uncomment to enable scroll progress indicator
+// createScrollProgress();
+
+// ========================================
+// Console Branding
+// ========================================
+
+console.log(
+    '%c🌊 Pathway Systems Studio',
+    'font-size: 24px; font-weight: bold; color: #0077B6; text-shadow: 2px 2px 4px rgba(0,119,182,0.2);'
+);
+
+console.log(
+    '%cDesigning systems for human transformation',
+    'font-size: 14px; color: #FFA500; font-style: italic;'
+);
+
+console.log(
+    '%c\n💡 Built with care • Scientific yet soulful • Clean yet adventurous • Structured yet alive\n',
+    'font-size: 12px; color: #465362;'
+);
+
+// ========================================
+// Logo Error Handling Enhancement
+// ========================================
+
+window.addEventListener('load', () => {
+    const logoImage = document.querySelector('.logo-image');
+    const logoText = document.querySelector('.logo-text');
+    
+    if (logoImage && logoImage.complete && logoImage.naturalHeight === 0) {
+        // Logo failed to load, ensure text logo is visible
+        logoImage.style.display = 'none';
+        if (logoText) {
+            logoText.style.display = 'flex';
+        }
+    }
+});
+
+// ========================================
+// Debounce Helper for Performance
+// ========================================
+
+function debounce(func, wait = 10) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Apply debounce to scroll handler for better performance
+const debouncedScroll = debounce(() => {
+    // Any expensive scroll operations can go here
+}, 10);
+
+window.addEventListener('scroll', debouncedScroll);
+
+// ========================================
+// Accessibility Enhancements
+// ========================================
+
+// Add keyboard navigation support
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    }
+});
+
+// Focus management for mobile menu
+hamburger.addEventListener('click', () => {
+    if (navMenu.classList.contains('active')) {
+        const firstLink = navMenu.querySelector('a');
+        if (firstLink) {
+            setTimeout(() => firstLink.focus(), 100);
+        }
+    }
+});
+
+// ========================================
+// Page Load Animation
+// ========================================
+
+window.addEventListener('load', () => {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.5s ease';
+    
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 100);
+});
+
+// ========================================
+// Dynamic Copyright Year
+// ========================================
+
+const footerYear = document.querySelector('.footer-bottom p');
+if (footerYear) {
+    const currentYear = new Date().getFullYear();
+    footerYear.innerHTML = `&copy; ${currentYear} Pathway Systems Studio. All rights reserved.`;
+}

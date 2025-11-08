@@ -3,23 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Strategic consulting services to transform your business and drive sustainable growth.">
-    <title>Apex Consulting Group - Strategic Business Transformation</title>
+    <meta name="description" content="Pathway Systems Studio - Designing systems for human transformation through neuroscience, data, and creative exploration.">
+    <title>Pathway Systems Studio | Where Science Meets Renewal</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="container">
-            <div class="nav-brand">Apex Consulting</div>
-            <ul class="nav-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#results">Results</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact" class="btn-nav">Get Started</a></li>
+            <div class="nav-brand">
+                <div class="logo-container">
+                    <!-- Logo placeholder - replace src with your logo file -->
+                    <img src="logo.png" alt="Pathway Systems Studio Logo" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="logo-text">
+                        <span class="logo-pathway">Pathway</span>
+                        <span class="logo-systems">Systems Studio</span>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#approach" class="nav-link">Approach</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger">
+            <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -29,244 +44,249 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-gradient"></div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Transform Your Business. <span class="highlight">Drive Results.</span></h1>
-                <p class="hero-subtitle">Strategic consulting that delivers measurable outcomes. We partner with ambitious organizations to solve complex challenges and unlock exponential growth.</p>
+                <h1 class="hero-title">
+                    Designing Systems for<br>
+                    <span class="hero-highlight">Human Transformation</span>
+                </h1>
+                <p class="hero-subtitle">Where neuroscience meets renewal. We create intelligent frameworks for recovery, growth, and purposeful change through systems thinking and creative exploration.</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Schedule a Consultation</a>
-                    <a href="#services" class="btn btn-secondary">Our Services</a>
+                    <a href="#contact" class="btn btn-primary">Start a Conversation</a>
+                    <a href="#about" class="btn btn-secondary">Explore Our Work</a>
                 </div>
             </div>
         </div>
-        <div class="hero-background"></div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Services</h2>
-                <p>Comprehensive solutions tailored to your unique challenges</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <h3>Strategy & Planning</h3>
-                    <p>Develop winning strategies that align with your vision and market realities. From market entry to digital transformation, we create actionable roadmaps for success.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">⚡</div>
-                    <h3>Operational Excellence</h3>
-                    <p>Optimize processes, reduce costs, and improve efficiency. We identify bottlenecks and implement systems that drive sustainable operational improvements.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📈</div>
-                    <h3>Growth & Innovation</h3>
-                    <p>Unlock new revenue streams and scale your business. We help you identify opportunities, innovate your offerings, and accelerate market penetration.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎯</div>
-                    <h3>Change Management</h3>
-                    <p>Navigate organizational transformation with confidence. Our proven frameworks ensure smooth transitions and high adoption rates for critical initiatives.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💼</div>
-                    <h3>Leadership Development</h3>
-                    <p>Build high-performing teams and develop future leaders. Our executive coaching and training programs create lasting organizational capability.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔍</div>
-                    <h3>Market Analysis</h3>
-                    <p>Make informed decisions with deep market intelligence. We deliver actionable insights on competitors, trends, and customer behavior.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Results Section -->
-    <section id="results" class="results">
-        <div class="container">
-            <div class="section-header">
-                <h2>Proven Results</h2>
-                <p>Real impact for real businesses</p>
-            </div>
-            <div class="results-grid">
-                <div class="result-card">
-                    <div class="result-number">$50M+</div>
-                    <div class="result-label">Revenue Generated</div>
-                    <p>Helped clients unlock new revenue streams and accelerate growth through strategic initiatives.</p>
-                </div>
-                <div class="result-card">
-                    <div class="result-number">200+</div>
-                    <div class="result-label">Projects Delivered</div>
-                    <p>Successfully completed engagements across industries, from startups to Fortune 500 companies.</p>
-                </div>
-                <div class="result-card">
-                    <div class="result-number">40%</div>
-                    <div class="result-label">Avg. Cost Reduction</div>
-                    <p>Achieved significant operational efficiencies through process optimization and strategic restructuring.</p>
-                </div>
-                <div class="result-card">
-                    <div class="result-number">98%</div>
-                    <div class="result-label">Client Satisfaction</div>
-                    <p>Maintained exceptional client relationships with industry-leading satisfaction scores.</p>
-                </div>
-            </div>
-
-            <!-- Case Studies -->
-            <div class="case-studies">
-                <h3>Featured Case Studies</h3>
-                <div class="case-study">
-                    <div class="case-study-content">
-                        <h4>Global Market Expansion</h4>
-                        <p class="case-industry">Technology | Series B Startup</p>
-                        <p>Partnered with a SaaS company to develop and execute an international expansion strategy. Conducted market research across 15 countries, identified optimal entry points, and built go-to-market plans.</p>
-                        <div class="case-results">
-                            <span class="case-metric">3 new markets entered</span>
-                            <span class="case-metric">$12M ARR in year one</span>
-                            <span class="case-metric">200% ROI</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="case-study">
-                    <div class="case-study-content">
-                        <h4>Digital Transformation</h4>
-                        <p class="case-industry">Manufacturing | Fortune 500</p>
-                        <p>Led enterprise-wide digital transformation for a traditional manufacturing company. Implemented cloud infrastructure, automated supply chain processes, and upskilled 500+ employees.</p>
-                        <div class="case-results">
-                            <span class="case-metric">35% efficiency gain</span>
-                            <span class="case-metric">$8M annual savings</span>
-                            <span class="case-metric">6-month delivery</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>Client Testimonials</h2>
-                <p>What our partners say about working with us</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="quote-icon">"</div>
-                    <p class="testimonial-text">Working with Apex was transformational for our business. Their strategic insights helped us identify blind spots we didn't even know existed, and their execution support ensured we actually got results.</p>
-                    <div class="testimonial-author">
-                        <strong>Sarah Chen</strong>
-                        <span>CEO, TechVentures Inc.</span>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="quote-icon">"</div>
-                    <p class="testimonial-text">The team brought a level of expertise and professionalism that exceeded our expectations. They didn't just hand us a report—they rolled up their sleeves and helped us implement real change.</p>
-                    <div class="testimonial-author">
-                        <strong>Michael Rodriguez</strong>
-                        <span>COO, Global Manufacturing Corp</span>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="quote-icon">"</div>
-                    <p class="testimonial-text">Their market analysis gave us the confidence to make a $20M investment decision. The insights were thorough, actionable, and ultimately proved to be incredibly accurate.</p>
-                    <div class="testimonial-author">
-                        <strong>Jennifer Park</strong>
-                        <span>VP Strategy, Innovate Financial</span>
-                    </div>
-                </div>
-            </div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
+    <section id="about" class="about-section">
         <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>About Apex Consulting</h2>
-                    <p>We're a team of strategic advisors, industry experts, and transformation specialists dedicated to helping organizations navigate complexity and achieve breakthrough results.</p>
-                    <p>Founded on the principle that great consulting delivers measurable outcomes, we combine deep industry knowledge with proven methodologies to solve our clients' toughest challenges. Our approach is collaborative, data-driven, and always focused on sustainable impact.</p>
-                    <div class="about-stats">
-                        <div class="about-stat">
-                            <strong>15+</strong>
-                            <span>Years Experience</span>
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="section-label">Who We Are</div>
+                    <h2 class="section-title">Where Science Meets Renewal</h2>
+                    <p class="about-text">Pathway Systems Studio exists at the intersection of neuroscience, data intelligence, and human experience. We believe that transformation happens through understanding—understanding the systems that shape us, the patterns that guide us, and the pathways that lead us forward.</p>
+                    <p class="about-text">Our work combines rigorous scientific thinking with creative exploration, bringing structure to complexity and clarity to change. We design frameworks that honor both the precision of data and the depth of human experience.</p>
+                    
+                    <div class="about-pillars">
+                        <div class="pillar-card">
+                            <div class="pillar-icon">🧠</div>
+                            <h3>Neuroscience + Data</h3>
+                            <p>Precision, structure, and systems-thinking grounded in scientific understanding.</p>
                         </div>
-                        <div class="about-stat">
-                            <strong>25+</strong>
-                            <span>Expert Consultants</span>
+                        <div class="pillar-card">
+                            <div class="pillar-icon">✨</div>
+                            <h3>Human Experience</h3>
+                            <p>Transformation, recovery, and purpose anchored in authentic human needs.</p>
                         </div>
-                        <div class="about-stat">
-                            <strong>12</strong>
-                            <span>Industries Served</span>
+                        <div class="pillar-card">
+                            <div class="pillar-icon">🎨</div>
+                            <h3>Design + Exploration</h3>
+                            <p>Creativity, curiosity, and movement that brings systems to life.</p>
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <div class="about-image-placeholder">
-                        <span>🎯</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header-center">
+                <div class="section-label">What We Do</div>
+                <h2 class="section-title">Intelligence. Healing. Exploration.</h2>
+                <p class="section-subtitle">Comprehensive frameworks designed for sustainable transformation</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
                     </div>
+                    <h3 class="service-title">Systems Design & Strategy</h3>
+                    <p class="service-description">We map complex organizational challenges and design elegant frameworks that create sustainable change. From recovery pathways to operational excellence, we bring clarity to complexity.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Data Intelligence & Insights</h3>
+                    <p class="service-description">Transform raw data into meaningful narratives. We build analytical frameworks that reveal patterns, predict outcomes, and guide decision-making with precision and purpose.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Human-Centered Transformation</h3>
+                    <p class="service-description">Change management that honors the human experience. We design transformation journeys that integrate neuroscience, behavioral insights, and compassionate leadership.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Recovery & Resilience Frameworks</h3>
+                    <p class="service-description">Evidence-based systems for individual and organizational recovery. We design pathways that support healing, build resilience, and foster sustainable well-being.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Creative Research & Exploration</h3>
+                    <p class="service-description">Innovation through curiosity. We conduct exploratory research that bridges disciplines, uncovers hidden connections, and reveals new possibilities for transformation.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon-wrapper">
+                        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Digital Experience Design</h3>
+                    <p class="service-description">Craft digital experiences that transform. From dashboards to platforms, we design interfaces that make complex systems accessible, intuitive, and beautiful.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section id="approach" class="approach-section">
+        <div class="container">
+            <div class="section-header-center">
+                <div class="section-label">Our Approach</div>
+                <h2 class="section-title">Mapping Change Through Design and Discovery</h2>
+            </div>
+
+            <div class="approach-grid">
+                <div class="approach-step">
+                    <div class="step-number">01</div>
+                    <h3 class="step-title">Deep Listening</h3>
+                    <p class="step-description">We begin by understanding your unique context—the systems, people, and challenges that define your current state. Through interviews, data analysis, and immersive observation, we build a comprehensive picture.</p>
+                </div>
+
+                <div class="approach-step">
+                    <div class="step-number">02</div>
+                    <h3 class="step-title">Pattern Recognition</h3>
+                    <p class="step-description">Using frameworks from neuroscience and systems thinking, we identify the underlying patterns and leverage points. What are the dynamics that sustain the current state? Where can small changes create significant impact?</p>
+                </div>
+
+                <div class="approach-step">
+                    <div class="step-number">03</div>
+                    <h3 class="step-title">Pathway Design</h3>
+                    <p class="step-description">We craft elegant frameworks and actionable strategies tailored to your needs. Each pathway is designed to be both structurally sound and humanly sustainable, bridging the gap between vision and reality.</p>
+                </div>
+
+                <div class="approach-step">
+                    <div class="step-number">04</div>
+                    <h3 class="step-title">Collaborative Implementation</h3>
+                    <p class="step-description">Transformation is a journey, not a destination. We work alongside you to implement, iterate, and refine. Our commitment extends beyond strategy to genuine partnership in realizing lasting change.</p>
+                </div>
+            </div>
+
+            <div class="approach-quote">
+                <blockquote>
+                    "True transformation emerges at the intersection of scientific rigor and human understanding—where data illuminates the path and compassion guides the way."
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy-section">
+        <div class="container">
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <h3>Scientific Yet Soulful</h3>
+                    <p>We ground our work in evidence and research, but never lose sight of the human experience at the heart of every system.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>Clean Yet Adventurous</h3>
+                    <p>Our frameworks bring clarity and order, while our process embraces exploration, creativity, and the unexpected.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>Structured Yet Alive</h3>
+                    <p>Systems provide the architecture, but transformation is a living process that requires flexibility, adaptation, and growth.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact-section">
         <div class="container">
-            <div class="section-header">
-                <h2>Let's Start a Conversation</h2>
-                <p>Ready to transform your business? Get in touch today.</p>
-            </div>
-            <div class="contact-content">
+            <div class="contact-grid">
                 <div class="contact-info">
-                    <h3>Get in Touch</h3>
-                    <p>Whether you're facing a specific challenge or exploring strategic opportunities, we're here to help. Schedule a free consultation to discuss your needs.</p>
+                    <div class="section-label">Get in Touch</div>
+                    <h2 class="section-title">Let's Begin the Conversation</h2>
+                    <p class="contact-intro">Whether you're navigating organizational transformation, seeking data-driven insights, or exploring new pathways for growth, we're here to listen and collaborate.</p>
+                    
                     <div class="contact-details">
                         <div class="contact-item">
-                            <span class="contact-icon">📧</span>
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
                             <div>
                                 <strong>Email</strong>
-                                <p>hello@apexconsulting.com</p>
+                                <p>hello@pathwayssystems.studio</p>
                             </div>
                         </div>
                         <div class="contact-item">
-                            <span class="contact-icon">📞</span>
-                            <div>
-                                <strong>Phone</strong>
-                                <p>+1 (555) 123-4567</p>
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
                             </div>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">📍</span>
                             <div>
-                                <strong>Office</strong>
-                                <p>123 Business Ave, Suite 400<br>New York, NY 10001</p>
+                                <strong>Location</strong>
+                                <p>Remote & On-Site Consultations Available</p>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
+                        <label for="organization">Organization (Optional)</label>
+                        <input type="text" id="organization" name="organization">
                     </div>
                     <div class="form-group">
-                        <label for="company">Company</label>
-                        <input type="text" id="company" name="company">
+                        <label for="message">Tell Us About Your Challenge</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="message">How can we help? *</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                    <p class="form-note">We'll respond within 24 hours</p>
+                    <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    <p class="form-note">We'll respond within 48 hours to begin exploring how we can help.</p>
                 </form>
             </div>
         </div>
@@ -277,30 +297,32 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <h3>Apex Consulting</h3>
-                    <p>Transforming businesses through strategic excellence.</p>
+                    <div class="footer-logo">
+                        <span class="logo-pathway">Pathway</span>
+                        <span class="logo-systems">Systems Studio</span>
+                    </div>
+                    <p class="footer-tagline">Designing systems for human transformation</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4>Services</h4>
+                        <h4>Explore</h4>
                         <ul>
-                            <li><a href="#services">Strategy & Planning</a></li>
-                            <li><a href="#services">Operational Excellence</a></li>
-                            <li><a href="#services">Growth & Innovation</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#approach">Approach</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4>Company</h4>
+                        <h4>Connect</h4>
                         <ul>
-                            <li><a href="#about">About Us</a></li>
-                            <li><a href="#results">Case Studies</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#contact">Contact Us</a></li>
+                            <li><a href="mailto:hello@pathwayssystems.studio">Email</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Apex Consulting Group. All rights reserved.</p>
+                <p>&copy; 2025 Pathway Systems Studio. All rights reserved.</p>
             </div>
         </div>
     </footer>
