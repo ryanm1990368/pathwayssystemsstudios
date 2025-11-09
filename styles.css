@@ -1,1046 +1,573 @@
-/*
-|--------------------------------------------------------------------------
-| 1. CSS VARIABLES & RESET
-|--------------------------------------------------------------------------
-| Define the color palette, typography, and a modern reset for consistency.
-*/
-:root {
-    /* Color Palette */
-    --color-primary: #0077B6; /* Corporate Blue - For CTAs and accents */
-    --color-secondary: #E9F7FE; /* Light Blue/Off-white - Subtle background */
-    --color-text-dark: #1A1A1A; /* Near Black - Main body text */
-    --color-text-light: #F7F7F7; /* White/Light Gray */
-    --color-background-white: #FFFFFF;
-    --color-background-light: #FAFAFA;
-    --color-accent-green: #2ECC71; /* Success/Impact highlight */
-    --color-shadow: rgba(0, 0, 0, 0.08);
-
-    /* Typography */
-    --font-heading: 'Poppins', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --font-display: 'Playfair Display', serif;
-
-    /* Spacing & Sizes */
-    --spacing-xs: 8px;
-    --spacing-sm: 16px;
-    --spacing-md: 32px;
-    --spacing-lg: 64px;
-    --spacing-xl: 96px;
-
-    /* Border Radius */
-    --border-radius-sm: 4px;
-    --border-radius-md: 8px;
-    --border-radius-lg: 12px;
-}
-
-/* Reset */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px; /* Base size */
-}
-
-body {
-    font-family: var(--font-body);
-    color: var(--color-text-dark);
-    line-height: 1.6;
-    background-color: var(--color-background-white);
-}
-
-/*
-|--------------------------------------------------------------------------
-| 2. BASE TYPOGRAPHY & UTILITIES
-|--------------------------------------------------------------------------
-*/
-
-/* Headings */
-h1, h2, h3, h4 {
-    font-family: var(--font-heading);
-    line-height: 1.2;
-    margin-bottom: 0.5em;
-    font-weight: 700;
-}
-
-h1 { font-size: 3rem; }
-h2 { font-size: 2.25rem; }
-h3 { font-size: 1.75rem; }
-h4 { font-size: 1.25rem; }
-
-/* Links */
-a {
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: color 0.3s, opacity 0.3s;
-}
-
-a:hover {
-    color: var(--color-primary);
-    opacity: 0.8;
-}
-
-/* Containers */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-sm);
-}
-
-/* Sections */
-section {
-    padding: var(--spacing-xl) 0;
-}
-
-.bg-light { background-color: var(--color-background-light); }
-.bg-secondary { background-color: var(--color-secondary); }
-
-.section-header-center {
-    max-width: 700px;
-    margin: 0 auto var(--spacing-md) auto;
-    text-align: center;
-}
-
-.section-label {
-    color: var(--color-primary);
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    margin-bottom: var(--spacing-sm);
-}
-
-.section-subtitle {
-    font-size: 1.125rem;
-    color: #555;
-    margin-top: var(--spacing-sm);
-}
-
-/* Buttons and CTAs */
-.btn {
-    display: inline-block;
-    padding: 12px 28px;
-    border-radius: var(--border-radius-md);
-    font-weight: 600;
-    text-align: center;
-    transition: background-color 0.3s, color 0.3s, transform 0.1s;
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-.btn-primary {
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
-    border-color: var(--color-primary);
-}
-
-.btn-primary:hover {
-    background-color: #005a8b; /* Darker primary */
-    color: var(--color-text-light);
-    transform: translateY(-2px);
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: var(--color-primary);
-    border-color: var(--color-primary);
-}
-
-.btn-secondary:hover {
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
-}
-
-.btn-full { width: 100%; }
-.mt-4 { margin-top: 2rem; }
-
-/* Elevation (Shadows for professional depth) */
-.elevation-2 {
-    box-shadow: 0 4px 6px -1px var(--color-shadow), 0 2px 4px -2px var(--color-shadow);
-}
-.elevation-3 {
-    box-shadow: 0 10px 15px -3px var(--color-shadow), 0 4px 6px -4px var(--color-shadow);
-}
-
-/*
-|--------------------------------------------------------------------------
-| 3. NAVBAR (Sticky & Responsive)
-|--------------------------------------------------------------------------
-*/
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: var(--color-background-white);
-    border-bottom: 1px solid transparent;
-    transition: background-color 0.3s, border-bottom 0.3s, padding 0.3s;
-    padding: 1rem 0;
-}
-
-.navbar.sticky {
-    padding: 0.75rem 0;
-    box-shadow: 0 2px 10px var(--color-shadow);
-    border-bottom: 1px solid var(--color-secondary);
-}
-
-.navbar-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.nav-brand {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-}
-
-.logo-image {
-    height: 30px; /* Adjust size */
-    margin-right: 8px;
-}
-
-.logo-text {
-    color: var(--color-text-dark);
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    align-items: center;
-}
-
-.nav-link {
-    display: block;
-    padding: 10px 15px;
-    color: var(--color-text-dark);
-    font-weight: 500;
-}
-
-.nav-link:hover {
-    color: var(--color-primary);
-}
-
-.btn-nav {
-    margin-left: var(--spacing-sm);
-}
-
-.hamburger {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1001;
-}
-
-.hamburger span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px 0;
-    background-color: var(--color-text-dark);
-    transition: all 0.3s ease-in-out;
-}
-
-/*
-|--------------------------------------------------------------------------
-| 4. HERO SECTION (High-Impact Introduction)
-|--------------------------------------------------------------------------
-*/
-.hero {
-    position: relative;
-    padding: 150px 0 120px 0;
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, var(--color-background-light) 0%, var(--color-secondary) 100%);
-    overflow: hidden;
-}
-
-.hero-content {
-    max-width: 800px;
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    margin: 0 auto;
-}
-
-.hero-title {
-    font-size: 3.5rem;
-    margin-bottom: var(--spacing-sm);
-    font-family: var(--font-display);
-    font-weight: 700;
-    color: var(--color-text-dark);
-}
-
-.hero-title strong {
-    color: var(--color-primary);
-    font-style: italic;
-}
-
-.hero-subtitle {
-    font-size: 1.35rem;
-    margin-bottom: var(--spacing-md);
-    color: #444;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: var(--spacing-sm);
-    justify-content: center;
-}
-
-/* Scroll Indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 40px;
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.scroll-line {
-    width: 100%;
-    height: 15px;
-    background-color: var(--color-primary);
-    animation: scroll-anim 2s infinite ease-in-out;
-}
-
-@keyframes scroll-anim {
-    0%, 100% { transform: translateY(-5px); }
-    50% { transform: translateY(20px); }
-}
-
-/*
-|--------------------------------------------------------------------------
-| 5. TRUST BAR & RESULTS (Authority & Social Proof)
-|--------------------------------------------------------------------------
-*/
-.trust-bar {
-    padding: var(--spacing-md) 0;
-    border-bottom: 1px solid #E0E0E0;
-}
-
-.trust-pre-title {
-    text-align: center;
-    font-weight: 500;
-    color: #555;
-    margin-bottom: var(--spacing-sm);
-}
-
-.client-logos-placeholder {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: var(--spacing-sm) 0;
-    gap: 20px;
-}
-
-.client-logos-placeholder [Image] {
-    opacity: 0.6;
-    max-height: 40px;
-    filter: grayscale(100%);
-    transition: opacity 0.3s;
-}
-
-/* Stats Section */
-.results-section {
-    padding: var(--spacing-lg) 0;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-md);
-    text-align: center;
-    margin-top: var(--spacing-lg);
-}
-
-.stat-card {
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius-lg);
-}
-
-.stat-number {
-    font-family: var(--font-heading);
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    line-height: 1;
-}
-
-.stat-label {
-    font-size: 1.125rem;
-    font-weight: 500;
-    margin-top: 10px;
-}
-
-/*
-|--------------------------------------------------------------------------
-| 6. SERVICES SECTION (Client-Outcome Focused)
-|--------------------------------------------------------------------------
-*/
-.services-section {
-    padding: var(--spacing-xl) 0;
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
-    margin-top: var(--spacing-md);
-}
-
-.service-card {
-    background-color: var(--color-background-white);
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius-lg);
-    border-top: 5px solid var(--color-primary);
-    transition: transform 0.3s;
-}
-
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px var(--color-shadow);
-}
-
-.service-emoji {
-    font-size: 2.5rem;
-    display: block;
-    margin-bottom: 15px;
-}
-
-.service-title {
-    color: var(--color-primary);
-    margin-bottom: 10px;
-}
-
-.service-description {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-.service-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-}
-
-.service-list li {
-    padding-left: 1.5em;
-    position: relative;
-    margin-bottom: 5px;
-    font-size: 0.95rem;
-}
-
-.service-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--color-accent-green);
-    font-weight: bold;
-}
-
-.btn-text {
-    font-weight: 600;
-    color: var(--color-primary);
-    text-decoration: underline;
-    display: inline-flex;
-    align-items: center;
-}
-
-/*
-|--------------------------------------------------------------------------
-| 7. OUR ADVANTAGE (UVP)
-|--------------------------------------------------------------------------
-*/
-.advantage-section {
-    padding: var(--spacing-xl) 0;
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* Default to single column */
-    gap: var(--spacing-lg);
-    align-items: center;
-}
-
-.about-text.lead {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin-bottom: var(--spacing-md);
-    color: var(--color-text-dark);
-}
-
-.advantage-pillars-grid {
-    margin-top: var(--spacing-md);
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-}
-
-.pillar-card {
-    display: flex;
-    gap: var(--spacing-sm);
-    align-items: flex-start;
-}
-
-.pillar-icon-cell {
-    font-size: 1.5rem;
-    flex-shrink: 0;
-    padding-top: 5px;
-}
-
-.pillar-content h4 {
-    font-weight: 600;
-    font-size: 1.15rem;
-}
-
-.pillar-content p {
-    color: #666;
-    font-size: 0.95rem;
-}
-
-/*
-|--------------------------------------------------------------------------
-| 8. APPROACH & TEAM
-|--------------------------------------------------------------------------
-*/
-/* Approach Section */
-.approach-section {
-    padding: var(--spacing-lg) 0;
-}
-
-.approach-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
-}
-
-.approach-step {
-    text-align: center;
-    padding: var(--spacing-md) var(--spacing-sm);
-    border-radius: var(--border-radius-lg);
-}
-
-.step-icon {
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    margin-bottom: 10px;
-}
-
-.step-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.step-description {
-    color: #666;
-}
-
-/* Team Section */
-.team-section {
-    padding: var(--spacing-xl) 0;
-    background-color: var(--color-background-white);
-}
-
-.team-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: var(--spacing-lg);
-    margin-top: var(--spacing-lg);
-    align-items: center;
-}
-
-.team-member {
-    display: flex;
-    gap: var(--spacing-md);
-    padding: var(--spacing-md);
-    border: 1px solid #E0E0E0;
-    border-radius: var(--border-radius-lg);
-}
-
-.team-photo-large {
-    flex-shrink: 0;
-    width: 250px;
-    height: 250px;
-    border-radius: var(--border-radius-lg);
-    overflow: hidden;
-    background-color: var(--color-secondary);
-    /* Placeholder style */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-style: italic;
-    color: #777;
-    text-align: center;
-}
-
-.team-photo-large img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.team-name {
-    margin-top: 0;
-    font-size: 1.5rem;
-    color: var(--color-primary);
-}
-
-.team-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-.team-bio {
-    font-size: 1rem;
-    margin-bottom: 15px;
-}
-
-.team-statement-card {
-    background-color: var(--color-secondary);
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius-lg);
-    border-left: 5px solid var(--color-accent-green);
-}
-
-.statement-lead {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--color-text-dark);
-    margin-bottom: 10px;
-}
-
-/*
-|--------------------------------------------------------------------------
-| 9. FAQ & CONTACT
-|--------------------------------------------------------------------------
-*/
-/* FAQ Section */
-.faq-container {
-    max-width: 800px;
-    margin: 0 auto var(--spacing-md) auto;
-}
-
-.faq-item {
-    border-bottom: 1px solid #E0E0E0;
-    padding: 15px 0;
-    cursor: pointer;
-}
-
-.faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
-    color: var(--color-text-dark);
-    transition: color 0.3s;
-}
-
-.faq-item:hover .faq-question {
-    color: var(--color-primary);
-}
-
-.faq-toggle {
-    font-size: 1.5rem;
-    color: var(--color-primary);
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-in-out;
-    padding-top: 0;
-}
-
-.faq-item.active .faq-answer {
-    padding-top: 15px;
-}
-
-.faq-answer p {
-    font-size: 0.95rem;
-    color: #555;
-}
-
-.faq-cta {
-    text-align: center;
-    margin-top: var(--spacing-lg);
-    padding: var(--spacing-md);
-    background-color: var(--color-background-white);
-    border-radius: var(--border-radius-lg);
-    border: 1px solid #E0E0E0;
-}
-
-.faq-cta p {
-    font-size: 1.25rem;
-    margin-bottom: 15px;
-    font-weight: 500;
-}
-
-/* Contact Section */
-.contact-section {
-    background-color: var(--color-primary);
-    padding: var(--spacing-xl) 0;
-    color: var(--color-text-light);
-}
-
-.contact-section .section-label {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.contact-section .section-title {
-    color: var(--color-text-light);
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: var(--spacing-lg);
-    align-items: flex-start;
-}
-
-.contact-intro {
-    font-size: 1.1rem;
-    margin-bottom: var(--spacing-md);
-    line-height: 1.5;
-}
-
-.contact-details {
-    margin-top: var(--spacing-md);
-}
-
-.contact-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    gap: var(--spacing-sm);
-}
-
-.contact-item svg {
-    width: 24px;
-    height: 24px;
-    stroke: var(--color-text-light);
-    flex-shrink: 0;
-    margin-top: 3px;
-}
-
-.contact-item strong {
-    display: block;
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 3px;
-}
-
-.contact-item p {
-    font-size: 0.95rem;
-    opacity: 0.8;
-}
-
-/* Contact Form */
-.contact-form {
-    background-color: var(--color-background-white);
-    color: var(--color-text-dark);
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius-lg);
-}
-
-.form-title {
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-md);
-}
-
-.form-row {
-    display: flex;
-    gap: var(--spacing-sm);
-}
-
-.form-group {
-    margin-bottom: var(--spacing-sm);
-    flex: 1;
-    width: 100%;
-}
-
-.contact-form label {
-    display: block;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-    color: #444;
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form select,
-.contact-form textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #DDD;
-    border-radius: var(--border-radius-sm);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    transition: border-color 0.3s;
-}
-
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
-    border-color: var(--color-primary);
-    outline: none;
-}
-
-.form-note {
-    font-size: 0.85rem;
-    color: #666;
-    margin-top: var(--spacing-sm);
-    text-align: center;
-}
-
-.form-status-message {
-    padding: 10px;
-    margin-top: var(--spacing-sm);
-    border-radius: var(--border-radius-sm);
-    font-weight: 600;
-    text-align: center;
-    display: none;
-}
-
-.form-status-message.success {
-    background-color: #E6F7E9;
-    color: var(--color-accent-green);
-    display: block;
-}
-
-.form-status-message.error {
-    background-color: #FEEAEA;
-    color: #D9534F;
-    display: block;
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| 10. FOOTER
-|--------------------------------------------------------------------------
-*/
-.footer {
-    background-color: #1A1A1A;
-    color: var(--color-text-light);
-    padding: var(--spacing-lg) 0 var(--spacing-md) 0;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    gap: var(--spacing-lg);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: var(--spacing-md);
-}
-
-.footer-brand {
-    max-width: 300px;
-}
-
-.footer-brand .logo-container {
-    margin-bottom: 10px;
-}
-
-.footer-brand .logo-text {
-    color: var(--color-text-light);
-}
-
-.footer-tagline {
-    font-size: 0.95rem;
-    opacity: 0.7;
-}
-
-.footer-links {
-    display: flex;
-    gap: var(--spacing-lg);
-}
-
-.footer-column h4 {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    color: var(--color-primary);
-}
-
-.footer-column ul {
-    list-style: none;
-}
-
-.footer-column ul li a {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.9rem;
-    display: block;
-    padding: 5px 0;
-}
-
-.footer-column ul li a:hover {
-    color: var(--color-text-light);
-    opacity: 1;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: var(--spacing-md);
-    font-size: 0.8rem;
-    opacity: 0.6;
-}
-
-/*
-|--------------------------------------------------------------------------
-| 11. MEDIA QUERIES (RESPONSIVENESS)
-|--------------------------------------------------------------------------
-*/
-@media (max-width: 1024px) {
-    /* Adjust grid columns for tablets */
-    .team-grid {
-        grid-template-columns: 1fr;
-    }
-    .team-member {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .team-photo-large {
-        width: 150px;
-        height: 150px;
-        margin-bottom: 15px;
-    }
-}
-
-@media (max-width: 768px) {
-    /* Typography adjustments */
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 1.75rem; }
-    .hero-title { font-size: 3rem; }
-    .hero-subtitle { font-size: 1.15rem; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    /* Layout adjustments */
-    section { padding: var(--spacing-lg) 0; }
-    .hero { min-height: auto; padding: 120px 0 60px 0; }
+    <title>Pathway Systems Studio | Grant Writing, Funding, & Evaluation for Sustainable Development</title>
+    <meta name="title" content="Pathway Systems Studio | Grant Writing, Funding, & Evaluation for Sustainable Development">
+    <meta name="description" content="Boutique consulting firm specializing in competitive grant writing, funding acquisition, and program evaluation for sustainable development and social impact organizations. Turn vision into $1.5M+ impact.">
+    <meta name="keywords" content="grant writing for nonprofits, sustainable development consulting, funding acquisition, program evaluation services, social impact strategy, Indigenous health consulting, Canada">
+    <meta name="author" content="Pathway Systems Studio">
+    <link rel="canonical" href="https://pathwaysystemsstudio.com/">
     
-    /* Navbar - Mobile Menu */
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 80%;
-        max-width: 300px;
-        height: 100%;
-        background-color: var(--color-background-white);
-        flex-direction: column;
-        justify-content: flex-start;
-        padding-top: 80px;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-menu.active {
-        transform: translateX(0);
-    }
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pathwaysystemsstudio.com/">
+    <meta property="og:title" content="Pathway Systems Studio | Grant Writing, Funding, & Evaluation for Sustainable Development">
+    <meta property="og:description" content="Boutique consulting firm specializing in competitive grant writing, funding acquisition, and program evaluation for sustainable development and social impact organizations.">
+    <meta property="og:image" content="https://pathwaysystemsstudio.com/logo.png">
     
-    .nav-menu li {
-        width: 100%;
-        border-bottom: 1px solid var(--color-secondary);
-    }
+    <meta name="geo.region" content="CA-BC">
+    <meta name="geo.placename" content="Canada">
     
-    .nav-link {
-        padding: 15px 25px;
-        text-align: left;
-    }
-
-    .btn-nav {
-        margin: 15px 25px;
-        width: calc(100% - 50px);
-    }
-
-    .hamburger {
-        display: block;
-        position: relative;
-        z-index: 1001;
-    }
-
-    /* Hero Buttons */
-    .hero-buttons {
-        flex-direction: column;
-    }
-    .hero-buttons .btn {
-        width: 100%;
-    }
-
-    /* Contact & Footer */
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     
-    .footer-content {
-        flex-direction: column;
-        gap: var(--spacing-md);
-        text-align: center;
-    }
-    .footer-links {
-        justify-content: space-around;
-        width: 100%;
-    }
-    .footer-column {
-        text-align: left;
-    }
-    .footer-column ul {
-        text-align: left;
-    }
-    .footer-brand {
-        max-width: 100%;
-    }
-    .footer-column h4 {
-        text-align: center;
-    }
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     
-    .client-logos-placeholder {
-        flex-wrap: wrap;
+    <link rel="stylesheet" href="styles.css">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Pathway Systems Studio",
+      "description": "Boutique consulting firm specializing in competitive funding, grant writing, and program evaluation for high-impact sustainable development organizations.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CA"
+      },
+      "email": "hello@pathwaysystemsstudio.com",
+      "url": "https://pathwaysystemsstudio.com",
+      "priceRange": "$$",
+      "serviceType": [
+        "Competitive Grant Writing",
+        "Funding Strategy",
+        "Program Evaluation",
+        "Strategic Communications"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Ryan Marino",
+        "jobTitle": "Principal Consultant"
+      }
     }
-}
+    </script>
+</head>
+<body>
+    <header>
+        <nav class="navbar" id="navbar" aria-label="Main navigation">
+            <div class="container navbar-content">
+                <a href="#home" class="nav-brand" aria-label="Pathway Systems Studio Home">
+                    <div class="logo-container">
+                        <img src="logo.png" alt="Pathway Systems Studio Logo" class="logo-image">
+                        <span class="logo-text">Pathway Systems Studio</span>
+                    </div>
+                </a>
+                <ul class="nav-menu" id="navMenu" role="menu">
+                    <li role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
+                    <li role="none"><a href="#results" class="nav-link" role="menuitem">Results</a></li>
+                    <li role="none"><a href="#services" class="nav-link" role="menuitem">Solutions</a></li>
+                    <li role="none"><a href="#advantage" class="nav-link" role="menuitem">Our Edge</a></li>
+                    <li role="none"><a href="#team" class="nav-link" role="menuitem">Expertise</a></li>
+                    <li role="none"><a href="#contact" class="btn btn-nav btn-primary" role="menuitem">Book Strategy Call</a></li>
+                </ul>
+                <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
 
-@media (max-width: 480px) {
-    h1 { font-size: 2rem; }
-    .hero-title { font-size: 2.25rem; }
+    <section id="home" class="hero">
+        <div class="hero-gradient"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Secure **Competitive Funding** &<br>
+                    Validate Your Sustainable Impact
+                </h1>
+                <p class="hero-subtitle">We are the boutique consultancy for impact-driven organizations. We don't just write grants—we craft winning narratives, secure **$1.5M+ in resources**, and provide evidence that turns vision into measurable, sustainable results.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary btn-cta">Book a Free 30-Min Strategy Call</a>
+                    <a href="#results" class="btn btn-secondary btn-results">See Our Track Record</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <section class="trust-bar bg-light">
+        <div class="container">
+            <p class="trust-pre-title">Trusted by Leading Organizations in Sustainable Development, Public Health, and Policy:</p>
+            <div class="client-logos-placeholder" aria-label="Client logos">
+                    
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="results-section">
+        <div class="container">
+            <div class="section-header-center">
+                <div class="section-label">Our Results Speak For Themselves</div>
+                <h2 class="section-title">Proven Impact, Measured Success</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="1.5">0</div>
+                    <div class="stat-label">**M+ in Funding Secured**</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="9">0</div>
+                    <div class="stat-label">Years of Strategic Advisory</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="2.5">0</div>
+                    <div class="stat-label">M+ Media Impressions Driven</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section bg-secondary">
+        <div class="container">
+            <div class="section-header-center">
+                <div class="section-label">Your Path to Impact</div>
+                <h2 class="section-title">🎯 Solutions for Sustainable Growth</h2>
+                <p class="section-subtitle">We solve three core problems that keep impact-driven organizations from reaching their potential. Choose the solution that accelerates your mission.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card elevation-2">
+                    <div class="service-icon-wrapper">
+                        <div class="service-emoji">💰</div>
+                    </div>
+                    <h3 class="service-title">Competitive Funding Acquisition</h3>
+                    <p class="service-description">**The Problem We Solve:** Your mission is constrained by a patchwork funding model. We turn "potential" into a sustainable resource stream.</p>
+                    <ul class="service-list">
+                        <li>**Outcome:** Successfully funded proposals and diversified revenue.</li>
+                        <li>**Includes:** Grant Writing, Funder Strategy, Budget Design, Project Management.</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-text">Secure Your Next Grant &rarr;</a>
+                </div>
+
+                <div class="service-card elevation-2">
+                    <div class="service-icon-wrapper">
+                        <div class="service-emoji">📊</div>
+                    </div>
+                    <h3 class="service-title">Rigorous Program Evaluation & Research</h3>
+                    <p class="service-description">**The Problem We Solve:** You need actionable, credible evidence to prove impact and secure future investment. We provide that evidence.</p>
+                    <ul class="service-list">
+                        <li>**Outcome:** Data-backed decisions and a verifiable impact report.</li>
+                        <li>**Includes:** Evaluation Design, Data Analysis, Policy Analysis, Impact Measurement.</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-text">Validate Your Impact &rarr;</a>
+                </div>
+
+                <div class="service-card elevation-2">
+                    <div class="service-icon-wrapper">
+                        <div class="service-emoji">📣</div>
+                    </div>
+                    <h3 class="service-title">Strategic Communications & Branding</h3>
+                    <p class="service-description">**The Problem We Solve:** Your message is getting lost. We create compelling narratives that resonate with decision-makers and stakeholders.</p>
+                    <ul class="service-list">
+                        <li>**Outcome:** Clear brand positioning and maximized stakeholder buy-in.</li>
+                        <li>**Includes:** Brand Strategy, Strategic Planning, Impact Storytelling, Stakeholder Engagement.</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-text">Amplify Your Voice &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="advantage" class="advantage-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="section-label">Your Unfair Advantage</div>
+                    <h2 class="section-title">Why Partner with Pathway Systems Studio?</h2>
+                    <p class="about-text lead">Meaningful change requires more than good intentions—it demands **strategic clarity, rigorous evidence, and a competitive edge** in funding. We provide the expertise you need to stop reacting and start creating lasting impact.</p>
+                    <p class="about-text">We are a boutique firm dedicated exclusively to organizations building a more sustainable and equitable world. Our approach is defined by deep expertise in public health, policy, and organizational development, applied through three principles:</p>
+
+                    <div class="advantage-pillars-grid">
+                        <div class="pillar-card">
+                            <div class="pillar-icon-cell">🔬</div>
+                            <div class="pillar-content">
+                                <h4>**Academic Rigor, Real-World Practicality**</h4>
+                                <p>We don't guess. We ground every strategy, proposal, and evaluation in evidence-based frameworks, ensuring defensible and high-leverage outcomes.</p>
+                            </div>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-icon-cell">🤝</div>
+                            <div class="pillar-content">
+                                <h4>**Capacity-Building Partnership**</h4>
+                                <p>Our engagement is collaborative. We work alongside your team to deliver immediate results while transferring knowledge that strengthens your organization for the long term.</p>
+                            </div>
+                        </div>
+                        <div class="pillar-card">
+                            <div class="pillar-icon-cell">🌱</div>
+                            <div class="pillar-content">
+                                <h4>**Sustainable Resource Focus**</h4>
+                                <p>We target long-term financial stability. We don't chase quick fixes; we build the frameworks for continuous funding and organizational resilience.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary mt-4">Discuss Your Project Today</a>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section id="approach" class="approach-section bg-light">
+        <div class="container">
+            <div class="section-header-center">
+                <div class="section-label">Our Process</div>
+                <h2 class="section-title">From Vision to Verified Impact in 4 Steps</h2>
+            </div>
+
+            <div class="approach-grid">
+                <div class="approach-step">
+                    <div class="step-icon">01</div>
+                    <h3 class="step-title">Discovery & Scope</h3>
+                    <p class="step-description">We start with a detailed 30-minute consultation to define the problem, review existing assets, and establish clear, measurable project goals.</p>
+                </div>
+
+                <div class="approach-step">
+                    <div class="step-icon">02</div>
+                    <h3 class="step-title">Evidence & Strategy</h3>
+                    <p class="step-description">We analyze opportunities using evidence-based frameworks, creating a tailored, high-leverage strategy that maximizes success potential.</p>
+                </div>
+
+                <div class="approach-step">
+                    <div class="step-icon">03</div>
+                    <h3 class="step-title">Develop & Deliver</h3>
+                    <p class="step-description">We execute the strategy, creating the final deliverable (grant proposal, evaluation design, or comms plan) with collaborative review cycles.</p>
+                </div>
+
+                <div class="approach-step">
+                    <div class="step-icon">04</div>
+                    <h3 class="step-title">Launch & Capacity-Build</h3>
+                    <p class="step-description">We partner through implementation, ensuring successful launch and transferring knowledge to your team for lasting organizational value.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team-section">
+        <div class="container">
+            <div class="section-header-center">
+                <div class="section-label">Meet Our Experts</div>
+                <h2 class="section-title">The Expertise Driving Your Success</h2>
+                <p class="section-subtitle">You are supported by a multidisciplinary team with deep, specialized experience in strategic advisory, public health, and competitive resource acquisition.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo-large">
+                        
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Ryan Marino, PhD (cand.)</h3>
+                        <div class="team-title">Principal Consultant & Founder</div>
+                        <p class="team-bio">Ryan is a trusted strategic advisor with over 9 years of experience translating complex research into high-impact policy and funding outcomes. His deep expertise includes public health, Indigenous health systems, and organizational transformation across government and healthcare sectors. He is the author of **[Key Publication/White Paper]** and has personally secured **$1.5M+** for client initiatives.</p>
+                        <div class="team-links">
+                            <a href="[LinkedIn URL]" aria-label="Ryan Marino LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-statement-card">
+                    <p class="statement-lead">**Backed by a Core Team of Specialists**</p>
+                    <p>Our engagements are supported by a specialized network of **Evaluators, Data Analysts, and Communications Strategists** who are brought in on a project-by-project basis to ensure you receive best-in-class expertise tailored precisely to your needs, without the overhead of a large firm.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     
-    .footer-links {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-    }
-    .footer-column {
-        width: 100%;
-        text-align: center;
-    }
-    .footer-column ul {
-        text-align: center;
-    }
-}
+    <section id="faq" class="faq-section bg-light">
+        <div class="container">
+            <div class="section-header-center">
+                <div class="section-label">Frequently Asked Questions</div>
+                <h2 class="section-title">Everything You Need to Know to Start</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item" tabindex="0">
+                    <div class="faq-question" role="button" aria-expanded="false">
+                        <h3>What types of organizations do you partner with?</h3>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We work exclusively with **small to medium-sized organizations** (Non-profits, NGOs, Social Enterprises, Indigenous Health bodies) that are committed to sustainable development and positive social impact. We are best suited for organizations that have a clear mission and are ready to invest in strategic support to achieve scale.</p>
+                    </div>
+                </div>
+                <div class="faq-item" tabindex="0">
+                    <div class="faq-question" role="button" aria-expanded="false">
+                        <h3>What is your pricing model?</h3>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our pricing is project-based, tailored to the scope and complexity of the work, ensuring clear expectations and value delivery. We do not work on a contingency (percentage of secured funds) basis, as this is ethically problematic and disallowed by many grant agencies. Pricing is transparently discussed during the initial strategy call.</p>
+                    </div>
+                </div>
+                <div class="faq-item" tabindex="0">
+                    <div class="faq-question" role="button" aria-expanded="false">
+                        <h3>How long does the grant acquisition process take?</h3>
+                        <span class="faq-toggle" aria-hidden="true">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>This varies significantly based on the grant complexity and the client’s internal readiness. Typically, a competitive grant proposal takes **4 to 8 weeks** from kickoff to submission. Our initial strategy call helps us determine a precise timeline for your specific needs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-cta">
+                <p>Ready to move your mission forward? **Secure your competitive edge.**</p>
+                <a href="#contact" class="btn btn-primary btn-lg">Book Your Strategy Session Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="section-label">Your Next Step</div>
+                    <h2 class="section-title">Book Your Free 30-Min Strategy Call</h2>
+                    <p class="contact-intro">Let’s discuss your funding goals, evaluation needs, or communication challenges. This call is a no-obligation opportunity to map out your next steps toward measurable impact.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </div>
+                            <div>
+                                <strong>Email</strong>
+                                <p>hello@pathwaysystemsstudio.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            </div>
+                            <div>
+                                <strong>Location</strong>
+                                <p>Canada-Based, Serving Global Missions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form elevation-3" id="contactForm" action="https://formspree.io/f/myzlgpqe" method="POST">
+                    <h3 class="form-title">Tell Us About Your Mission</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Your Full Name **</label>
+                            <input type="text" id="name" name="name" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Work Email **</label>
+                            <input type="email" id="email" name="email" required aria-required="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="organization">Organization Name **</label>
+                        <input type="text" id="organization" name="organization" required aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">I Am Interested In...</label>
+                        <select id="service" name="service">
+                            <option value="">Select a service area</option>
+                            <option value="Funding Acquisition">Competitive Funding Acquisition</option>
+                            <option value="Evaluation and Research">Program Evaluation & Research</option>
+                            <option value="Communications">Strategic Communications & Branding</option>
+                            <option value="Other">General Inquiry / Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">What is your biggest challenge right now? **</label>
+                        <textarea id="message" name="message" rows="4" placeholder="e.g., 'We need to secure $X in the next 6 months' or 'We need a robust evaluation framework...'" required aria-required="true"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full btn-lg">Secure My Strategy Call</button>
+                    <p class="form-note">We respect your time. We'll review your information and respond within 24 hours.</p>
+                    <div id="form-status" class="form-status-message" role="alert" aria-live="assertive"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-container">
+                        <img src="logo-light.png" alt="Pathway Systems Studio Logo" class="logo-image">
+                        <span class="logo-text">Pathway Systems Studio</span>
+                    </div>
+                    <p class="footer-tagline">Strategic advisory for organizations driving sustainable impact.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#advantage">Our Edge</a></li>
+                            <li><a href="#services">Solutions</a></li>
+                            <li><a href="#approach">Process</a></li>
+                            <li><a href="#team">Expertise</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="#contact">Book Strategy Call</a></li>
+                            <li><a href="mailto:hello@pathwaysystemsstudio.com">Email Us</a></li>
+                            <li><a href="[LinkedIn URL]">LinkedIn</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pathway Systems Studio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle (A11y Enhanced)
+        document.getElementById('hamburger').addEventListener('click', function() {
+            const navMenu = document.getElementById('navMenu');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+            this.setAttribute('aria-expanded', !isExpanded);
+            navMenu.classList.toggle('active');
+        });
+
+        // Sticky Navbar (Improved UX)
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('sticky', window.scrollY > 50);
+        });
+
+        // Stats Counter Animation (User Engagement)
+        const statsSection = document.getElementById('results');
+        const counters = document.querySelectorAll('.stat-number');
+        let hasCounted = false;
+
+        const startCounter = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const isMillion = counter.textContent.includes('M+');
+                let startVal = 0;
+                const duration = 2000;
+                let startTimestamp = null;
+                
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    let currentVal = progress * target;
+                    
+                    if (target === 1.5 || target === 2.5) { // For 1.5M and 2.5M
+                        currentVal = parseFloat(currentVal.toFixed(2));
+                    } else {
+                        currentVal = Math.floor(currentVal);
+                    }
+
+                    if (isMillion) {
+                        counter.textContent = currentVal.toFixed(1) + 'M';
+                    } else {
+                        counter.textContent = currentVal;
+                    }
+
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        // Ensure final value is accurate and includes the +/M
+                        if (isMillion) {
+                            counter.textContent = target.toFixed(1) + 'M+';
+                        } else {
+                            counter.textContent = target + '+';
+                        }
+                    }
+                };
+                window.requestAnimationFrame(step);
+            });
+            hasCounted = true;
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasCounted) {
+                    startCounter();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Contact Form Submission (Friction Reduction) - Uses Formspree as placeholder
+        const form = document.getElementById('contactForm');
+        const formStatus = document.getElementById('form-status');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            formStatus.textContent = 'Sending...';
+            formStatus.classList.remove('success', 'error');
+            
+            // NOTE: Replace the Formspree action URL with your actual form submission endpoint
+            const response = await fetch(form.action, { 
+                method: form.method,
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                formStatus.textContent = 'Thank you! Your Strategy Call request has been submitted. We will be in touch within 24 hours.';
+                formStatus.classList.add('success');
+                form.reset();
+            } else {
+                formStatus.textContent = 'Oops! There was an issue submitting the form. Please try again or email us directly.';
+                formStatus.classList.add('error');
+            }
+        });
+        
+        // Basic FAQ Accordion (Interactivity)
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            const toggle = item.querySelector('.faq-toggle');
+            
+            question.addEventListener('click', () => {
+                const isExpanded = question.getAttribute('aria-expanded') === 'true';
+                
+                // Close all other open FAQs
+                document.querySelectorAll('.faq-item.active').forEach(activeItem => {
+                    if (activeItem !== item) {
+                        activeItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                        activeItem.querySelector('.faq-answer').style.maxHeight = null;
+                        activeItem.classList.remove('active');
+                        activeItem.querySelector('.faq-toggle').textContent = '+';
+                    }
+                });
+                
+                // Toggle current FAQ
+                question.setAttribute('aria-expanded', !isExpanded);
+                answer.style.maxHeight = isExpanded ? null : answer.scrollHeight + "px";
+                item.classList.toggle('active');
+                toggle.textContent = isExpanded ? '+' : '–';
+            });
+        });
+
+    </script>
+</body>
+</html>
