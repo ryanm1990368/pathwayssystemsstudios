@@ -128,64 +128,116 @@ if (heroGradient) {
 }
 
 // ========================================
-// Contact Form Handling
+// Contact Form Handling with Formspree
 // ========================================
 
 const contactForm = document.getElementById('contactForm');
 
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Get form data
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        organization: document.getElementById('organization').value,
-        message: document.getElementById('message').value
-    };
+    // Get the submit button to show loading state
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+    submitButton.textContent = 'Sending...';
+    submitButton.disabled = true;
     
-    // Create success message
-    const successMessage = document.createElement('div');
-    successMessage.style.cssText = `
-        background: linear-gradient(135deg, #0077B6 0%, #FFA500 100%);
-        color: white;
-        padding: 1.25rem 2rem;
-        border-radius: 12px;
-        margin-top: 1.5rem;
-        text-align: center;
-        animation: fadeInUp 0.5s ease;
-        font-weight: 600;
-    `;
-    successMessage.textContent = 'Thank you for reaching out! We\'ll respond within 48 hours to begin exploring how we can help.';
+    // Prepare form data
+    const formData = new FormData(contactForm);
     
-    // Remove any existing success messages
-    const existingMessage = contactForm.querySelector('.success-message');
-    if (existingMessage) {
-        existingMessage.remove();
+    try {
+        // Submit to Formspree using AJAX
+        const response = await fetch('https://formspree.io/f/myzlgpqe', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (response.ok) {
+            // Success! Show the success message
+            const successMessage = document.createElement('div');
+            successMessage.style.cssText = `
+                background: linear-gradient(135deg, #0077B6 0%, #FFA500 100%);
+                color: white;
+                padding: 1.25rem 2rem;
+                border-radius: 12px;
+                margin-top: 1.5rem;
+                text-align: center;
+                animation: fadeInUp 0.5s ease;
+                font-weight: 600;
+            `;
+            successMessage.textContent = 'Thank you for reaching out! We\'ll respond within 48 hours to begin exploring how we can help.';
+            
+            // Remove any existing success messages
+            const existingMessage = contactForm.querySelector('.success-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            successMessage.className = 'success-message';
+            contactForm.appendChild(successMessage);
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Reset button
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+            
+            // Remove success message after 7 seconds
+            setTimeout(() => {
+                successMessage.style.opacity = '0';
+                successMessage.style.transform = 'translateY(-20px)';
+                successMessage.style.transition = 'all 0.3s ease';
+                setTimeout(() => successMessage.remove(), 300);
+            }, 7000);
+            
+        } else {
+            // Error handling
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Form submission failed');
+        }
+        
+    } catch (error) {
+        // Show error message
+        const errorMessage = document.createElement('div');
+        errorMessage.style.cssText = `
+            background: #dc2626;
+            color: white;
+            padding: 1.25rem 2rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            text-align: center;
+            animation: fadeInUp 0.5s ease;
+            font-weight: 600;
+        `;
+        errorMessage.textContent = 'Oops! Something went wrong. Please try again or email us directly at hello@pathwayssystems.studio';
+        
+        // Remove any existing messages
+        const existingMessage = contactForm.querySelector('.success-message, .error-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        
+        errorMessage.className = 'error-message';
+        contactForm.appendChild(errorMessage);
+        
+        // Reset button
+        submitButton.textContent = originalButtonText;
+        submitButton.disabled = false;
+        
+        // Remove error message after 7 seconds
+        setTimeout(() => {
+            errorMessage.style.opacity = '0';
+            errorMessage.style.transform = 'translateY(-20px)';
+            errorMessage.style.transition = 'all 0.3s ease';
+            setTimeout(() => errorMessage.remove(), 300);
+        }, 7000);
+        
+        console.error('Form submission error:', error);
     }
-    
-    successMessage.className = 'success-message';
-    contactForm.appendChild(successMessage);
-    
-    // Reset form
-    contactForm.reset();
-    
-    // Remove success message after 7 seconds
-    setTimeout(() => {
-        successMessage.style.opacity = '0';
-        successMessage.style.transform = 'translateY(-20px)';
-        successMessage.style.transition = 'all 0.3s ease';
-        setTimeout(() => successMessage.remove(), 300);
-    }, 7000);
-    
-    // Log form data (in production, send this to your backend)
-    console.log('Contact form submitted:', formData);
-    
-    // SETUP NOTE: To actually send emails, integrate with:
-    // - Formspree: https://formspree.io
-    // - EmailJS: https://www.emailjs.com
-    // - Netlify Forms (if deploying on Netlify)
-    // - Or your own backend server
 });
 
 // ========================================
