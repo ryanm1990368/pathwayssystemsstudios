@@ -87,6 +87,61 @@ window.addEventListener('scroll', () => {
 });
 
 // ========================================
+// Animated Stats Counter
+// ========================================
+
+const statNumbers = document.querySelectorAll('.stat-number');
+let statsAnimated = false;
+
+const animateStats = () => {
+    statNumbers.forEach(stat => {
+        const target = parseFloat(stat.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
+        
+        const updateCount = () => {
+            current += increment;
+            if (current < target) {
+                // Format the number
+                if (target >= 1) {
+                    stat.textContent = current.toFixed(1);
+                } else {
+                    stat.textContent = Math.floor(current);
+                }
+                requestAnimationFrame(updateCount);
+            } else {
+                // Final value with proper formatting
+                if (target === 1.5) {
+                    stat.textContent = '$1.5M+';
+                } else if (target === 8) {
+                    stat.textContent = '8';
+                } else if (target === 2.5) {
+                    stat.textContent = '2.5M+';
+                }
+            }
+        };
+        
+        updateCount();
+    });
+};
+
+// Observe stats section
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !statsAnimated) {
+            statsAnimated = true;
+            animateStats();
+        }
+    });
+}, { threshold: 0.5 });
+
+const statsSection = document.querySelector('.stats-section');
+if (statsSection) {
+    statsObserver.observe(statsSection);
+}
+
+// ========================================
 // Intersection Observer for Fade-in Animations
 // ========================================
 
@@ -213,7 +268,7 @@ contactForm.addEventListener('submit', async (e) => {
             animation: fadeInUp 0.5s ease;
             font-weight: 600;
         `;
-        errorMessage.textContent = 'Oops! Something went wrong. Please try again or email us directly at hello@pathwayssystems.studio';
+        errorMessage.textContent = 'Oops! Something went wrong. Please try again or email us directly at hello@pathwaysystemsstudio.com';
         
         // Remove any existing messages
         const existingMessage = contactForm.querySelector('.success-message, .error-message');
@@ -238,6 +293,28 @@ contactForm.addEventListener('submit', async (e) => {
         
         console.error('Form submission error:', error);
     }
+});
+
+// ========================================
+// FAQ Accordion
+// ========================================
+
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    question.addEventListener('click', () => {
+        // Close all other FAQ items
+        faqItems.forEach(otherItem => {
+            if (otherItem !== item && otherItem.classList.contains('active')) {
+                otherItem.classList.remove('active');
+            }
+        });
+        
+        // Toggle current item
+        item.classList.toggle('active');
+    });
 });
 
 // ========================================
