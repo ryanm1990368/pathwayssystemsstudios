@@ -111,14 +111,13 @@ const animateStats = () => {
                 }
                 requestAnimationFrame(updateCount);
             } else {
-                // Final value with proper formatting
-                if (target === 1.5) {
-                    stat.textContent = '$1.5M+';
-                } else if (target === 8) {
-                    stat.textContent = '8';
-                } else if (target === 2.5) {
-                    stat.textContent = '2.5M+';
-                }
+                // Get the prefix and suffix directly from the HTML
+                const prefix = stat.getAttribute('data-prefix') || ''; // Get prefix or use an empty string
+                const suffix = stat.getAttribute('data-suffix') || ''; // Get suffix or use an empty string
+                
+                // Set the final text by combining the attributes
+                stat.textContent = prefix + target.toFixed(target >= 1 ? 1 : 0) + suffix; 
+            }                }
             }
         };
         
