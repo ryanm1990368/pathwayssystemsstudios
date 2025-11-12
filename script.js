@@ -110,30 +110,20 @@ const animateStats = () => {
                     stat.textContent = Math.floor(current);
                 }
                 requestAnimationFrame(updateCount);
-            } else {
-                // ... (Your code up to the 'else' block)
-
-            } else {
-                // Final value with proper formatting
+            } else {               
+                // Final value is reached (current >= target)
+                current = target; // Ensure the final value is exactly the target
                 
-                // Get the final text elements from the HTML attributes
-                const suffix = stat.getAttribute('data-suffix') || ''; // e.g., "M+" or "+"
+                // Read the prefix and suffix from the HTML attributes
+                const prefix = stat.getAttribute('data-prefix') || '';
+                const suffix = stat.getAttribute('data-suffix') || '';
                 
-                let finalValue = current.toFixed(target % 1 !== 0 ? 1 : 0); // Use .toFixed(1) for decimals (like 1.5) or .toFixed(0) for integers (like 7 or 8)
-
-                if (target === 1.5) {
-                    // Total Funding Secured: Needs the $ sign
-                    stat.textContent = '$' + finalValue + suffix;
-                } 
-                // Fixes your issue: This target is '2' (or '2.0'). It should NOT have a dollar sign.
-                else if (target === 2) { 
-                    stat.textContent = finalValue + suffix; // NO '$' added here
-                }
-                // Handle the other counters, adjusting for the '7' in HTML
-                else {
-                    // For targets like 7 or 8, just display the number and suffix
-                    stat.textContent = finalValue + suffix;
-                }
+                // Determine decimal places: 1 if the target has a decimal (e.g., 1.5, 2.0), 0 otherwise (e.g., 7)
+                const decimalPlaces = target % 1 !== 0 ? 1 : 0; 
+                
+                // Build the final text content dynamically
+                stat.textContent = prefix + current.toFixed(decimalPlaces) + suffix;
+            }                }
             }
 
 // ...            }                }
