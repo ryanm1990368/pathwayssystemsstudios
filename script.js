@@ -111,13 +111,32 @@ const animateStats = () => {
                 }
                 requestAnimationFrame(updateCount);
             } else {
-                // Get the prefix and suffix directly from the HTML
-                const prefix = stat.getAttribute('data-prefix') || ''; // Get prefix or use an empty string
-                const suffix = stat.getAttribute('data-suffix') || ''; // Get suffix or use an empty string
+                // ... (Your code up to the 'else' block)
+
+            } else {
+                // Final value with proper formatting
                 
-                // Set the final text by combining the attributes
-                stat.textContent = prefix + target.toFixed(target >= 1 ? 1 : 0) + suffix; 
-            }                }
+                // Get the final text elements from the HTML attributes
+                const suffix = stat.getAttribute('data-suffix') || ''; // e.g., "M+" or "+"
+                
+                let finalValue = current.toFixed(target % 1 !== 0 ? 1 : 0); // Use .toFixed(1) for decimals (like 1.5) or .toFixed(0) for integers (like 7 or 8)
+
+                if (target === 1.5) {
+                    // Total Funding Secured: Needs the $ sign
+                    stat.textContent = '$' + finalValue + suffix;
+                } 
+                // Fixes your issue: This target is '2' (or '2.0'). It should NOT have a dollar sign.
+                else if (target === 2) { 
+                    stat.textContent = finalValue + suffix; // NO '$' added here
+                }
+                // Handle the other counters, adjusting for the '7' in HTML
+                else {
+                    // For targets like 7 or 8, just display the number and suffix
+                    stat.textContent = finalValue + suffix;
+                }
+            }
+
+// ...            }                }
             }
         };
         
