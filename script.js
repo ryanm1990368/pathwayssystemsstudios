@@ -115,7 +115,7 @@ const animateStats = () => {
                 current = target; // Ensure the final value is exactly the target
                 
                 // Read the prefix and suffix from the HTML attributes
-                const prefix = stat.getAttribute('data-prefix') || '';
+                const prefix = stat.getAttribute('data-prefix') || '';               
                 const suffix = stat.getAttribute('data-suffix') || '';
                 
                 // Determine decimal places: 1 if the target has a decimal (e.g., 1.5, 2.0), 0 otherwise (e.g., 7)
