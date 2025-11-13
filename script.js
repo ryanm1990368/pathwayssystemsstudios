@@ -129,7 +129,7 @@ const animateStats = () => {
 // ...            }                }
             }
         };
-        
+        stat.textContent = ''; // clear any leftover text like "$0M+"
         updateCount();
     });
 };
